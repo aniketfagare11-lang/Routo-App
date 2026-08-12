@@ -12,11 +12,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue?logo=react"/>
+  <img src="https://img.shields.io/badge/Frontend-Flutter-blue?logo=flutter"/>
   <img src="https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-green?logo=node.js"/>
-  <img src="https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql"/>
-  <img src="https://img.shields.io/badge/ORM-Prisma-2D3748?logo=prisma"/>
-  <img src="https://img.shields.io/badge/Auth-JWT-orange"/>
+  <img src="https://img.shields.io/badge/Database-Firebase-orange?logo=firebase"/>
+  <img src="https://img.shields.io/badge/Maps-Google%20Maps%20API-red?logo=googlemaps"/>
+  <img src="https://img.shields.io/badge/AI-Gemini-purple"/>
   <img src="https://img.shields.io/badge/Status-Hackathon%20MVP-success"/>
 </p>
 
@@ -34,14 +34,14 @@
 
 ## 🌍 Problem Statement
 
-Traditional parcel delivery often requires dedicated logistics movement, resulting in:
+Traditional parcel delivery systems can suffer from:
 
-* ❌ Higher delivery costs
+* ❌ High delivery costs
 * ❌ Longer delivery times
 * ❌ Underutilized transportation capacity
 * ❌ Inefficient use of existing travel routes
 
-At the same time, thousands of people travel between cities every day with unused space in their vehicles.
+Meanwhile, thousands of people travel between cities every day with unused space in their vehicles.
 
 **Routo turns those existing journeys into delivery opportunities.**
 
@@ -54,7 +54,7 @@ Routo is a **peer-to-peer delivery platform** that connects:
 * 📦 **Senders** who need to deliver parcels
 * 🚗 **Travelers** who are already traveling toward the destination
 
-Instead of creating a separate delivery trip, Routo uses an **existing journey** to move the parcel.
+Instead of creating a separate delivery trip, Routo utilizes an **existing journey** to move the parcel.
 
 ### The idea is simple:
 
@@ -62,9 +62,9 @@ Instead of creating a separate delivery trip, Routo uses an **existing journey**
 
 This creates value for both sides:
 
-**Sender →** Faster and potentially more affordable delivery
+**Sender →** Faster and more convenient delivery
 
-**Traveler →** Earn from unused carrying capacity
+**Traveler →** Earn from available carrying capacity
 
 ---
 
@@ -74,8 +74,7 @@ This creates value for both sides:
 * 💰 Create earning opportunities for travelers
 * 📦 Utilize unused transportation capacity
 * 🤝 Build a community-driven delivery network
-* 🌱 Reduce unnecessary dedicated delivery trips
-* 🔐 Provide a secure and trackable delivery lifecycle
+* 🌱 Encourage efficient use of existing journeys
 
 ---
 
@@ -83,7 +82,7 @@ This creates value for both sides:
 
 ### 📦 Parcel Booking
 
-Senders can create parcels with:
+Senders can create parcels by providing:
 
 * Parcel title
 * Description
@@ -108,334 +107,64 @@ Travelers can publish their upcoming journeys:
 
 ### 🔎 Smart Parcel Matching
 
-Routo identifies compatible parcels and routes using:
+Routo connects suitable parcels with travelers based on:
 
-* Pickup/drop location compatibility
-* Available traveler capacity
+* Pickup and destination compatibility
+* Available carrying capacity
 * Parcel status
+* Travel route
 
-The current matching engine is **rule-based and deterministic**, making the matching process explainable and predictable.
+This helps utilize existing journeys instead of creating dedicated delivery trips.
 
 ---
 
-### 🚚 Complete Delivery Lifecycle
+### 📍 Delivery Tracking
 
-Routo tracks the parcel through a complete lifecycle:
+Users can follow the parcel's delivery progress through the application.
+
+The delivery lifecycle is represented through stages such as:
 
 ```text
 PENDING
    ↓
 ACCEPTED
    ↓
-PICKED_UP
+PICKED UP
    ↓
-IN_TRANSIT
+IN TRANSIT
    ↓
 DELIVERED
 ```
 
-This gives both sender and traveler visibility into the delivery progress.
+---
+
+### 🔐 Secure Delivery Verification
+
+Routo uses OTP-based verification during the delivery process to provide an additional layer of trust between sender, traveler and recipient.
 
 ---
 
-### 🔐 OTP-Verified Delivery
+### 💰 Traveler Earnings
 
-Before completing a delivery:
+Travelers can earn rewards for carrying parcels along routes they are already traveling.
 
-1. Delivery OTP is generated
-2. OTP is securely hashed in the database
-3. Recipient provides the OTP
-4. OTP is verified
-5. Delivery is marked as completed
-
-This adds an additional layer of trust to peer-to-peer delivery.
+The platform records delivery-related earnings and transactions.
 
 ---
 
-### 💰 Traveler Wallet
+### 🤖 AI Assistance
 
-After successful delivery verification:
-
-* Traveler receives the delivery reward
-* Wallet balance is updated
-* A wallet transaction is recorded
-
-Example:
-
-```text
-Delivery Reward
-+ ₹300
-
-Status: SUCCESS
-```
+Routo integrates **Gemini AI** to provide intelligent assistance within the application, helping users with guidance and platform-related queries.
 
 ---
 
-### ⭐ Delivery Reviews
+### 🗺️ Route & Map Experience
 
-After a completed delivery, users can provide:
-
-* Rating
-* Comment
-
-This creates the foundation for a future community trust system.
+Google Maps integration provides route and location visualization to make pickup, drop and travel information easier to understand.
 
 ---
 
-## 🔄 Golden Path
-
-The complete Routo workflow:
-
-```text
-Register
-   ↓
-Login
-   ↓
-Create Parcel
-   ↓
-Create Travel Route
-   ↓
-Find Match
-   ↓
-Accept Parcel
-   ↓
-Pickup
-   ↓
-In Transit
-   ↓
-Generate OTP
-   ↓
-Verify OTP
-   ↓
-Delivered
-   ↓
-Reward Released
-   ↓
-Review
-```
-
-This complete flow has been tested against the backend APIs and PostgreSQL database.
-
----
-
-## 🏗️ System Architecture
-
-```text
-                    ┌───────────────────────┐
-                    │       Routo User      │
-                    │  Sender / Traveler    │
-                    └───────────┬───────────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │    React Frontend     │
-                    │  TypeScript + Vite    │
-                    └───────────┬───────────┘
-                                │
-                         REST API / JWT
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │   Node.js + Express   │
-                    │      REST API         │
-                    └───────────┬───────────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │        Prisma         │
-                    │         ORM           │
-                    └───────────┬───────────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │      PostgreSQL       │
-                    │     Routo Database    │
-                    └───────────────────────┘
-```
-
----
-
-## 🧩 Backend Modules
-
-The backend is organized around the core Routo workflow:
-
-```text
-Authentication
-     │
-     ├── Users
-     │
-     ▼
-Parcel Management
-     │
-     ▼
-Route Management
-     │
-     ▼
-Matching
-     │
-     ▼
-Delivery Management
-     │
-     ├── Pickup
-     ├── In Transit
-     ├── OTP Verification
-     └── Delivery Completion
-     │
-     ▼
-Wallet
-     │
-     ▼
-Reviews
-```
-
----
-
-## 🛠️ Tech Stack
-
-| Layer           | Technology         |
-| --------------- | ------------------ |
-| Frontend        | React + TypeScript |
-| Build Tool      | Vite               |
-| Styling         | Tailwind CSS       |
-| Backend         | Node.js + Express  |
-| Language        | TypeScript         |
-| ORM             | Prisma             |
-| Database        | PostgreSQL         |
-| Authentication  | JWT + Bcrypt       |
-| Validation      | Zod                |
-| API             | REST               |
-| Version Control | Git + GitHub       |
-
----
-
-## 🔐 Security
-
-Routo implements several security practices:
-
-* 🔑 JWT-based authentication
-* 🔒 Password hashing using Bcrypt
-* 🔐 OTP stored as a secure hash
-* 🛡️ Protected API routes
-* ✅ Request validation using Zod
-* 🔗 Relational integrity through PostgreSQL and Prisma
-* 🚫 No plaintext passwords stored in the database
-
----
-
-## 🧪 Testing & Reliability
-
-The backend golden path has been tested end-to-end.
-
-### Integration Test Result
-
-```text
-29 Passed
-0 Failed
-```
-
-Verified modules include:
-
-```text
-✓ Registration
-✓ Login
-✓ Parcel
-✓ Route
-✓ Matching
-✓ Delivery
-✓ Pickup
-✓ In Transit
-✓ OTP
-✓ Wallet
-✓ Review
-```
-
-Database persistence was also verified for:
-
-```text
-✓ User
-✓ Parcel
-✓ Route
-✓ Delivery
-✓ DeliveryOTP
-✓ WalletTransaction
-✓ Review
-```
-
----
-
-## 📊 Database Flow
-
-The main entities are connected through the delivery lifecycle:
-
-```text
-User
- │
- ├──────────────► Parcel
- │                    │
- │                    ▼
- │                  Delivery
- │                    │
- │                    ├──► DeliveryOTP
- │                    │
- │                    └──► Review
- │
- └──────────────► Route
-                      │
-                      ▼
-                   Matching
-
-Delivery
-   │
-   ▼
-WalletTransaction
-   │
-   ▼
-Traveler Wallet
-```
-
----
-
-## 🚀 Unique Value Proposition
-
-### For Senders
-
-* ⚡ Faster delivery opportunities
-* 💰 Potentially lower delivery costs
-* 📍 Trackable delivery lifecycle
-* 🔐 OTP-verified handover
-
-### For Travelers
-
-* 💵 Earn from unused vehicle capacity
-* 🛣️ Monetize journeys they are already making
-* 📦 Carry compatible parcels
-* ⭐ Build delivery reputation
-
-### For the Network
-
-* 🚗 Better utilization of existing journeys
-* 🌱 Potential reduction in dedicated delivery trips
-* 🤝 Community-powered logistics
-
----
-
-## 📈 Future Scope
-
-Routo can be extended with:
-
-* 🤖 Intelligent route/match scoring
-* 🗺️ Advanced route optimization
-* 💳 Integrated payment gateway
-* 🔔 Real-time notifications
-* ⭐ Advanced traveler reputation system
-* 📦 Multi-parcel route optimization
-* 🛡️ Enhanced identity/KYC verification
-* 🌐 Expansion to multiple cities
-* 📊 Delivery analytics and insights
-
----
-
-## 📱 Application Flow
+## 🔄 Application Flow
 
 ### Sender
 
@@ -446,17 +175,15 @@ Create Parcel
   ↓
 Enter Pickup & Drop
   ↓
-Set Parcel Weight
-  ↓
-Set Reward
+Set Weight & Reward
   ↓
 Find Traveler
   ↓
-Select Match
+Select Suitable Traveler
   ↓
 Track Delivery
   ↓
-Verify Delivery
+Delivery Completed
 ```
 
 ### Traveler
@@ -464,7 +191,7 @@ Verify Delivery
 ```text
 Login
   ↓
-Create Route
+Create Travel Route
   ↓
 Set Available Capacity
   ↓
@@ -476,20 +203,136 @@ Pickup
   ↓
 In Transit
   ↓
-Complete OTP Verification
+Complete Delivery
   ↓
 Receive Reward
 ```
 
 ---
 
-## 🎥 Demo
+## 🏗️ System Architecture
 
-🔗 **Live Application:**
-https://routo-app.web.app
+```text
+                 ┌──────────────────────┐
+                 │      Routo User      │
+                 │ Sender / Traveler    │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │    Flutter App       │
+                 │      Frontend        │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │   Node.js + Express  │
+                 │       Backend        │
+                 └──────────┬───────────┘
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │       Firebase       │
+                 │      Database        │
+                 └──────────┬───────────┘
+                            │
+              ┌─────────────┴─────────────┐
+              ▼                           ▼
+      ┌────────────────┐          ┌────────────────┐
+      │ Google Maps API │          │   Gemini AI    │
+      └────────────────┘          └────────────────┘
+```
 
-🎬 **Demo Video:**
-*Add your final YouTube/demo video link here.*
+---
+
+## 🛠️ Tech Stack
+
+| Layer             | Technology                |
+| ----------------- | ------------------------- |
+| Frontend          | Flutter                   |
+| Backend           | Node.js + Express         |
+| Database          | Firebase                  |
+| Maps & Location   | Google Maps API           |
+| AI Assistance     | Gemini                    |
+| API Communication | REST APIs                 |
+| Development       | Dart + JavaScript/Node.js |
+| Version Control   | Git + GitHub              |
+
+---
+
+## 🔐 Security & Reliability
+
+Routo is designed with security and reliability in mind:
+
+* 🔐 Authentication for users
+* 🛡️ Backend-based API operations
+* 🔑 Sensitive configuration kept outside publicly exposed source code
+* 📦 Structured parcel and delivery management
+* 🔒 OTP-based delivery verification
+* ☁️ Firebase-backed data storage
+
+> Sensitive credentials and private configuration values should be provided through environment/configuration files and should not be committed to the repository.
+
+---
+
+## 🧪 Testing & Reliability
+
+The application has been tested across the primary delivery workflow, including:
+
+```text
+✓ User Registration
+✓ User Login
+✓ Parcel Creation
+✓ Route Creation
+✓ Parcel Matching
+✓ Delivery Acceptance
+✓ Pickup
+✓ In Transit
+✓ OTP Verification
+✓ Delivery Completion
+✓ Traveler Reward
+```
+
+The goal of testing was to verify the complete journey from **parcel creation to successful delivery**.
+
+---
+
+## 🌟 Unique Value Proposition
+
+### For Senders
+
+* ⚡ Convenient parcel delivery
+* 📍 Route visibility
+* 🔐 Verified delivery
+* 🤝 Access to travelers already heading toward the destination
+
+### For Travelers
+
+* 💰 Earn from unused carrying capacity
+* 🛣️ Monetize journeys they are already making
+* 📦 Carry suitable parcels along their route
+
+### For the Environment
+
+* 🚗 Better utilization of existing journeys
+* 🌱 Potential reduction in unnecessary dedicated delivery trips
+
+---
+
+## 📈 Future Scope
+
+Routo can be expanded with:
+
+* 🤖 Advanced intelligent matching
+* 🗺️ Advanced route optimization
+* 💳 Integrated payment gateway
+* 🔔 Real-time push notifications
+* ⭐ Traveler trust and rating system
+* 📦 Multi-parcel optimization
+* 🛡️ Enhanced KYC and identity verification
+* 📊 Delivery analytics
+* 🌐 Expansion to multiple cities
+* 🚚 Larger community-based logistics network
 
 ---
 
@@ -499,16 +342,17 @@ https://routo-app.web.app
 Routo/
 │
 ├── Frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.ts
+│   ├── lib/
+│   ├── assets/
+│   ├── android/
+│   ├── ios/
+│   ├── web/
+│   └── pubspec.yaml
 │
 ├── Backend/
 │   ├── src/
-│   ├── prisma/
-│   ├── integration.test.ts
-│   └── package.json
+│   ├── package.json
+│   └── ...
 │
 └── README.md
 ```
@@ -517,71 +361,82 @@ Routo/
 
 ## ⚙️ Local Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/Project-Routo-Hackathon.git
 cd Project-Routo-Hackathon
 ```
 
-### 2. Backend setup
+### 2. Backend Setup
 
 ```bash
 cd Backend
 npm install
 ```
 
-Configure your environment variables in `.env`.
+Configure the required backend environment variables.
 
-Then:
+Then start the server:
 
 ```bash
-npm run build
 npm start
 ```
 
-Backend runs on:
+### 3. Flutter Frontend Setup
 
-```text
-http://localhost:5000
-```
-
-### 3. Frontend setup
+From the frontend directory:
 
 ```bash
 cd Frontend
-npm install
+flutter pub get
 ```
 
-Configure:
-
-```text
-VITE_API_URL=http://localhost:5000/api
-```
-
-Then:
+Run the application:
 
 ```bash
-npm run dev
+flutter run
 ```
 
-Frontend runs on:
+For Flutter Web:
 
-```text
-http://localhost:5173
+```bash
+flutter run -d chrome
 ```
+
+---
+
+## 🎥 Demo
+
+### 🚀 Live Application
+
+https://routo-app.web.app
+
+### 🎬 Demo Video
+
+*Add your final demo video link here.*
 
 ---
 
 ## 🏆 Hackathon Project
 
-**Routo** is built as a functional peer-to-peer logistics MVP demonstrating:
+Routo demonstrates a practical peer-to-peer logistics model:
 
-> **Existing journey → Parcel match → Verified delivery → Traveler reward**
+```text
+Existing Journey
+       ↓
+Suitable Parcel
+       ↓
+Traveler Match
+       ↓
+Verified Delivery
+       ↓
+Traveler Reward
+```
 
-The focus is not simply on parcel tracking.
+The core concept is simple:
 
-It is on **utilizing journeys that are already happening.**
+> **Use journeys that are already happening to move parcels more efficiently.**
 
 ---
 
