@@ -1,0 +1,56 @@
+# Misc
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+
+# Build folders
+build/
+.dart_tool/
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+
+# IDE
+.idea/
+.vscode/
+
+# Coverage
+coverage/
+
+# Android
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# User/AI generated local files
+analyze*.txt
+implementation_plan.md
+walkthrough.md
+
+# Node / Firebase JS SDK (not needed for Flutter)
+node_modules/
+package-lock.json
+package.json
+
+# Log / temp files
+*.txt
+flutter_run*.txt
+
+# Environment / Secret files — never commit these
+.env
+*.env
+/android/local.properties
+
+
+# Directions Service
+# (Already secured via String.fromEnvironment)
+
+# Local Web Environment Variables
+/web/env.js
+.vercel
